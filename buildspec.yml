@@ -5,7 +5,6 @@ phases:
   pre_build:
     commands:
       - mvn clean install
-      - ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/n2r5h8k0
       - REPOSITORY_URI=public.ecr.aws/n2r5h8k0/lottery-sqs-publisher
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
