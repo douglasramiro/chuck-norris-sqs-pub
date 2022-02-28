@@ -4,7 +4,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(ls /var/lib/docker)
       - mvn clean install
       - echo Logging in ECR...
       - ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
